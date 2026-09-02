@@ -1,0 +1,32 @@
+<!--/* multifield.html */-->
+Multifield
+<sly data-sly-use.multi="com.adobe.aem.guides.wknd.core.models.Multifield"/>
+${multi.displayPopupTitle}
+${multi.alt}
+Contact: ${multi.contact}
+Size: ${multi.contact.size}
+Value: ${multi.value}
+slingModelcurrentPage: ${multi.currentPage.path}
+<br>
+Sightly Value: ${currentPage.path}
+<br>
+Sightly currentResource: ${resource.path}
+<div>
+    <ul data-sly-repeat.product="${multi.contact}">
+        <br>
+        <li>${product.contactName}</li>
+        <li>${product.contactEmail}</li>
+        <li>${product.address}</li>
+    </ul>
+</div>
+<div>
+CHECK
+<sly data-sly-resource="${'helloworld2' @ resourceType='wknd/components/helloworld'}"
+OVER
+</div>
+<br>
+NAME - ${currentPage.name}
+NAME - ${currentPage.name}
+<sly data-sly-test="${currentPage.name == 'faqs'}">
+ <sly data-sly-include="multifield2.html"/>
+</sly>
