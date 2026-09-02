@@ -76,7 +76,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     private WeatherData fetchFromOpenMeteo() {
         String url = apiUrl + "?latitude=" + latitude + "&longitude=" + longitude + "&current=is_day,temperature_2m" + "&forecast_days=1";
-        LOG.debug("Calling Open-Meteo API");
+        LOG.debug("Calling Open-Meteo API URL: {}", url);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .timeout(Duration.ofMillis(requestTimeoutMillis))
