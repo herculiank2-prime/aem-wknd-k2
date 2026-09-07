@@ -1,0 +1,5 @@
+{
+  "user.mapping": [
+    "aem-guides-wknd.core:asset-writer=[k2-writer]"
+  ]
+}

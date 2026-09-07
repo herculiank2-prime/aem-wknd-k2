@@ -1,0 +1,6 @@
+{
+  "cacheTtlSeconds" : "100",
+  "apiUrl" : "https://api.open-meteo.com/v1/forecast",
+  "latitude" : "40.711",
+  "longitude" : "-74.009"
+}
