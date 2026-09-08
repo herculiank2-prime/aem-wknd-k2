@@ -1,0 +1,5 @@
+{
+  "user.mapping": [
+    "aem-guides-wknd.core:background-processing=wknd-background-service"
+  ]
+}

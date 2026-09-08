@@ -1,8 +1,0 @@
-{
-  "scripts": [
-    "create service user k2-writer with forced path system/cq/services/wknd",
-    "set principal ACL for k2-writer",
-    "    allow jcr:read,rep:write,crx:replicate,jcr:versionManagement,jcr:lockManagement on /content/dam/wknd",
-    "end"
-  ]
-}
