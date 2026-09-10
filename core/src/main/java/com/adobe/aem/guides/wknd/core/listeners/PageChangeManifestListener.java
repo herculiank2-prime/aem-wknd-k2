@@ -38,8 +38,13 @@ public final class PageChangeManifestListener implements ResourceChangeListener 
 
     @Override
     public void onChange(List<ResourceChange> changes) {
-        Map<String, ResourceChange.ChangeType> pages = new LinkedHashMap<>();
-        changes.stream().filter(c -> relevant(c.getPath())).forEach(c -> pages.put(pagePath(c.getPath()), c.getType()));
+        Map<String, Map<String, String>> pages = new LinkedHashMap<>();
+        for (ResourceChange change : changes) {
+            Map<String, String> values = new LinkedHashMap<>();
+            values.put(change.getUserId(), change.getType().toString());
+            pages.put(change.getPath(), values);
+        }
+        //changes.stream().filter(c -> relevant(c.getPath())).forEach(c -> pages.put(pagePath(c.getPath()), c.getType()));
         pages.remove(null);
         if (pages.isEmpty())
             return;
@@ -53,7 +58,10 @@ public final class PageChangeManifestListener implements ResourceChangeListener 
                     marker = rr.create(root, name, Map.of("jcr:primaryType", "nt:unstructured"));
                 ModifiableValueMap m = marker.adaptTo(ModifiableValueMap.class);
                 m.put("wknd-path", e.getKey());
-                m.put("wknd-changeType", e.getValue().name());
+                for (var j : e.getValue().entrySet()) {
+                    m.put("wknd-changeType", j.getValue());
+                    m.put("wknd-changedBy", j.getKey());
+                }
                 m.put("wknd-changedAt", Instant.now().toString());
             }
             rr.commit();
