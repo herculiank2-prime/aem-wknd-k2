@@ -1,0 +1,30 @@
+<sly data-sly-use.model="com.adobe.aem.guides.wknd.core.models.RelatedArticleModel"
+     data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
+     data-sly-test.hasContent="${!model.isEmpty}"></sly>
+<section class="related-articles" data-sly-test="${!model.isEmpty}">
+    <div class="related-articles__container">
+        <h2 class="related-articles__title">
+            ${model.title}
+        </h2>
+        <div class="related-articles__grid" data-sly-list.article="${model.relatedArticles}">
+            <article class="related-articles__card">
+                <a class="related-articles__link"
+                   href="${article.path}.html">
+                    <div class="related-articles__content">
+                        <h3 class="related-articles__card-title">
+                            ${article.title}
+                        </h3>
+                        <p class="related-articles__description"
+                           data-sly-test="${article.description}">
+                            ${article.description}
+                        </p>
+                        <span class="related-articles__read-more">
+                            Read article →
+                        </span>
+                    </div>
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+<sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!hasContent}"></sly>
